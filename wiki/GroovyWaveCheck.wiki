@@ -4,6 +4,17 @@
 
 System Tray application written in the Groovy scripting language which checks for unread Google Waves.
 
+Icons:
+  * Gray - no unread waves
+  * Red - auth or connection error
+  * Colored - unread waves available
+
+When unread waves are available a small number will appear in the corner of the tray icon.  If more than 9 unread waves just a "+" will appear in the corner.
+
+Hovering over the icon will display a tool-tip indicating the last time waves were checked.
+
+Right clicking the icon will give a pop-up menu.
+
 
 = Requirements =
 

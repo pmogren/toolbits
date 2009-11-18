@@ -27,3 +27,6 @@ For Linux need sun 1.6 upgrade 10 or higher which fixed the bug where the system
 = Tested =
   * Ubuntu 9.1 - Groovy Version: 1.5.8 JVM: 1.6.0_15
   * Windows XP - Groovy Version: 1.6.5 JVM: 1.6.0_15
+
+= Download =
+[http://code.google.com/p/toolbits/source/browse/trunk/waveCheck/src/waveCheck.groovy Current Version]

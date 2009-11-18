@@ -29,4 +29,4 @@ For Linux need sun 1.6 upgrade 10 or higher which fixed the bug where the system
   * Windows XP - Groovy Version: 1.6.5 JVM: 1.6.0_15
 
 = Download =
-[http://toolbits.googlecode.com/svn/trunk/waveCheck/src/waveCheck.groovy Current Version]
+Right click [http://toolbits.googlecode.com/svn/trunk/waveCheck/src/waveCheck.groovy Current Version] and Save Link As...

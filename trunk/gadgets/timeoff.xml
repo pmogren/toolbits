@@ -111,10 +111,12 @@ function isLeapYear (Year) {
         return;
       }
       
+      var viewerId = wave.getViewer().getId();
       var state = wave.getState();
       var participants = wave.getParticipants();
       var numPeople = participants.length;
       var now   = curDate;
+      var person;
 
       e.write("month", getMonthName(now));
       e.write("year", now.getFullYear());
@@ -124,7 +126,6 @@ function isLeapYear (Year) {
       if (participants) {
         for (var i = 0; i < participants.length; ++i) {
           var u = participants[i];
-          var person;
           eval("person = " + wave.getState().get(u.getId()));
           if(!person){
             person = {};
@@ -136,6 +137,21 @@ function isLeapYear (Year) {
 
           create_row(now, person);
         }
+      }
+
+      
+      e.write("list","");
+      eval("person = " + wave.getState().get(viewerId));
+      var dates = person.dates;
+      for(entry in dates){
+        var tr = e.create("tr");
+        var d = dates[entry];
+        var start = new Date();
+        var end = new Date();
+        start.setTime(d.s);
+        end.setTime(d.e);
+        create_td(tr, start.getMonth() + "/" + start.getDate() + "/" + start.getYear() + " - " + end.getMonth() + "/" + end.getDate() + "/" + end.getYear());
+        $("list").appendChild(tr);
       }
     }
 
@@ -192,6 +208,11 @@ function isLeapYear (Year) {
 
   <table width="100%">
     <tbody id="content"></tbody>
+  </table>
+
+  <br/><br/>
+  <table>
+    <tbody id="list"></tbody>
   </table>
 
   <table>

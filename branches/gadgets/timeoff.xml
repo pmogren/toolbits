@@ -144,18 +144,19 @@ function isLeapYear (Year) {
       e.write("list","");
       eval("person = " + wave.getState().get(viewerId));
       var dates = person.dates;
-      for(entry in dates){
-        var tr = e.create("tr");
-        var d = dates[entry];
-        var start = new Date();
-        var end = new Date();
-        start.setTime(d.s);
-        end.setTime(d.e);
-        create_td(tr, (start.getMonth()+1) + "/" + start.getDate() + "/" + start.getFullYear() + " - " + (end.getMonth()+1) + "/" + end.getDate() + "/" + end.getFullYear());
-	create_td(tr, '<input type=button value="X" id="del" onClick="del('+ entry +')">');
-        $("list").appendChild(tr);
+      if(dates){
+        for(entry in dates){
+          var tr = e.create("tr");
+          var d = dates[entry];
+          var start = new Date();
+          var end = new Date();
+          start.setTime(d.s);
+          end.setTime(d.e);
+          create_td(tr, (start.getMonth()+1) + "/" + start.getDate() + "/" + start.getFullYear() + " - " + (end.getMonth()+1) + "/" + end.getDate() + "/" + end.getFullYear());
+	  create_td(tr, '<input type=button value="X" id="del" onClick="del('+ entry +')">');
+          $("list").appendChild(tr);
+        }
       }
-
       gadgets.window.adjustHeight();
     }
 

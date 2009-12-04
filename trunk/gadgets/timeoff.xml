@@ -137,6 +137,7 @@ function isLeapYear (Year) {
     }
 
     function buttonClicked(){
+      e.write("month", "clicked");
       var id = getId();
       var viewerId = wave.getViewer().getId();
       var start = new Date($("s").value);

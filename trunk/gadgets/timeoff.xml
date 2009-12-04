@@ -144,9 +144,9 @@ function isLeapYear (Year) {
       var delta = {};
       var person;
       eval("person = " + wave.getState().get(viewerId));
-      if(!person}
+      if(!person)
         person = {};
-      if(!person.dates}
+      if(!person.dates)
         person.dates = {};
       person.dates[id].s = start;
       person.dates[id].e = end;

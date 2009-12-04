@@ -117,13 +117,14 @@ function isLeapYear (Year) {
       if (participants) {
         for (var i = 0; i < participants.length; ++i) {
           var u = participants[i];
-          var person = wave.getState().get(u.getId())
+          var person;
+          eval("person = " + wave.getState().get(u.getId()));
           if(!person){
             person = {};
-            person.name = u.getDisplayName();
-            if (!person.name) {
-              person.name = u.getId();
-            }
+          }
+          person.name = u.getDisplayName();
+          if (!person.name) {
+            person.name = u.getId();
           }
 
           create_row(now, person);

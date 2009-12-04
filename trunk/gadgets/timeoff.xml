@@ -184,9 +184,9 @@ function isLeapYear (Year) {
 
   <table width="100%">
     <tr>
-      <td><input type=button value="Add" id="add" onClick="prevMonth()"></td>
+      <td align="right"><input type=button value="<" id="prev" onClick="prevMonth()"></td>
       <td align="center"><span id="month"></span>&nbsp;<span id="year"></span></td>
-      <td><input type=button value="Add" id="add" onClick="nextMonth()"></td>
+      <td align="left"><input type=button value=">" id="next" onClick="nextMonth()"></td>
     </tr>
   </table>
 

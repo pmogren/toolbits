@@ -8,6 +8,8 @@
   
   <script type="text/javascript">
 
+    var curDate = new Date();
+
     var e = {
       show:function(id){$(id).style.display='block';}, 
       hide:function(id){$(id).style.display='none';}, 
@@ -112,9 +114,10 @@ function isLeapYear (Year) {
       var state = wave.getState();
       var participants = wave.getParticipants();
       var numPeople = participants.length;
-      var now   = new Date();
+      var now   = curDate;
 
       e.write("month", getMonthName(now));
+      e.write("year", now.getFullYear());
       e.write("content","");
       create_header(now);
 
@@ -159,6 +162,16 @@ function isLeapYear (Year) {
       wave.getState().submitDelta(delta);
     }
 
+    function nextMonth(){
+      curDate.setMonth(curDate.getMonth() + 1);
+      renderInfo()
+    }
+
+    function prevMonth(){
+      curDate.setMonth(curDate.getMonth() - 1);
+      renderInfo()
+    }
+
     function init() {
       if (wave && wave.isInWaveContainer()) {
         wave.setStateCallback(renderInfo);
@@ -170,7 +183,11 @@ function isLeapYear (Year) {
   </script>
 
   <table width="100%">
-    <tr><td align="center"><span id="month"></span></td></tr>
+    <tr>
+      <td><input type=button value="Add" id="add" onClick="prevMonth()"></td>
+      <td align="center"><span id="month"></span>&nbsp;<span id="year"></span></td>
+      <td><input type=button value="Add" id="add" onClick="nextMonth()"></td>
+    </tr>
   </table>
 
   <table width="100%">
@@ -180,7 +197,7 @@ function isLeapYear (Year) {
   <table>
     <tr><td>Start:</td><td><input id="s"></input></td></tr>
     <tr><td>End:</td><td><input id="e"></input></td></tr>
-    <tr><td></td><td><input type=button value="Add" id="butCount" onClick="buttonClicked()"></td></tr>
+    <tr><td></td><td><input type=button value="Add" id="add" onClick="buttonClicked()"></td></tr>
   </table>
 
 

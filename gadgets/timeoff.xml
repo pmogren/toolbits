@@ -152,6 +152,7 @@ function isLeapYear (Year) {
         start.setTime(d.s);
         end.setTime(d.e);
         create_td(tr, (start.getMonth()+1) + "/" + start.getDate() + "/" + start.getFullYear() + " - " + (end.getMonth()+1) + "/" + end.getDate() + "/" + end.getFullYear());
+	create_td(tr, '<input type=button value="X" id="del" onClick="delete('+ entry +')">');
         $("list").appendChild(tr);
       }
 
@@ -188,6 +189,10 @@ function isLeapYear (Year) {
 
     function prevMonth(){
       curDate.setMonth(curDate.getMonth() - 1);
+      renderInfo()
+    }
+
+    function delete(id){
       renderInfo()
     }
 

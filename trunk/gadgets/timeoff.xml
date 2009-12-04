@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module>
-<ModulePrefs title="Time Off" height="250">
+<ModulePrefs title="Time Off">
   <Require feature="wave-preview" /> 
   <Require feature="dynamic-height" /> 
   </ModulePrefs>

@@ -150,7 +150,7 @@ function isLeapYear (Year) {
         var end = new Date();
         start.setTime(d.s);
         end.setTime(d.e);
-        create_td(tr, start.getMonth() + "/" + start.getDate() + "/" + start.getYear() + " - " + end.getMonth() + "/" + end.getDate() + "/" + end.getYear());
+        create_td(tr, (start.getMonth()+1) + "/" + start.getDate() + "/" + start.getFullYear() + " - " + (end.getMonth()+1) + "/" + end.getDate() + "/" + end.getFullYear());
         $("list").appendChild(tr);
       }
     }

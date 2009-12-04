@@ -131,6 +131,9 @@ function isLeapYear (Year) {
       }
     }
 
+    function buttonClicked(){
+    }
+
     function init() {
       if (wave && wave.isInWaveContainer()) {
         wave.setStateCallback(renderInfo);
@@ -147,6 +150,12 @@ function isLeapYear (Year) {
 
   <table width="100%">
     <tbody id="content"></tbody>
+  </table>
+
+  <table>
+    <tr><td>Start:</td><td><input id="s"></input></td></tr>
+    <tr><td>End:</td><td><input id="e"></input></td></tr>
+    <tr><td></td><td><input type=button value="Add" id="butCount" onClick="buttonClicked()"></td></tr>
   </table>
 
 

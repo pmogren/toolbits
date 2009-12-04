@@ -154,6 +154,8 @@ function isLeapYear (Year) {
         create_td(tr, (start.getMonth()+1) + "/" + start.getDate() + "/" + start.getFullYear() + " - " + (end.getMonth()+1) + "/" + end.getDate() + "/" + end.getFullYear());
         $("list").appendChild(tr);
       }
+
+      gadgets.window.adjustHeight();
     }
 
     function getId(){

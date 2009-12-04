@@ -176,7 +176,11 @@ def post(Map<String,String> parms, location)
 	else
 	{
 		StringBuffer out = new StringBuffer()
-		conn.errorStream.eachLine{ out << "$it\n"}
+		err = conn.errorStream
+		if(err != null)
+		{
+			conn.errorStream.eachLine{ out << "$it\n"}
+		}
 		return [responseCode : conn.responseCode, text : out.toString()]
 	}
 }

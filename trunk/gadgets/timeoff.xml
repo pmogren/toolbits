@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+<ModulePrefs title="Time Off" height="250">
+  <Require feature="wave-preview" /> 
+  </ModulePrefs>
+  <Content type="html">
+ <![CDATA[ 
+  
+  <script type="text/javascript">
+
+    var e = {
+      show:function(id){$(id).style.display='block';}, 
+      hide:function(id){$(id).style.display='none';}, 
+      write:function(id,msg){$(id).innerHTML = msg;},
+      create:function(element){return document.createElement(element);}
+    }
+
+    function $(id){
+      return document.getElementById(id);
+    }
+
+function create_td(tr, info){
+        var td = e.create("td");
+        td.innerHTML = info;
+        tr.appendChild(td);
+}
+
+function create_header(now){
+        var numDays = getDays(now);
+
+        var tr = e.create("tr");
+        create_td(tr, "");
+        for(var i = 0; i < numDays; i++ ) {
+                create_td(tr, i+1);
+        }
+        $("content").appendChild(tr);
+        
+}
+
+function create_row(now, person){
+        var month = now.getMonth();
+        var year  = now.getYear();
+        year += 1900;
+
+        var numDays = getDays(now);
+        var col_date = new Date(year, month, 1);
+        var dates = person.dates;
+
+        var tr = e.create("tr");
+        create_td(tr, person.name);
+
+        for(var i = 0; i < numDays; i++ ) {
+                var found = false;
+                var dates = person.dates;
+                for(entry in dates){
+                        var d = dates[entry];
+                        if(d.s <= col_date && d.e >= col_date)
+                                found = true;
+                }
+                if(found)
+                        create_td(tr, "*");
+                else
+                        create_td(tr, " ");
+                col_date.setDate( col_date.getDate() + 1);
+        }
+        $("content").appendChild(tr);
+        
+}
+
+function getMonthName(d)
+{
+        var month = d.getMonth();
+        var m_names = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+        return m_names[month];
+}
+
+function getDays(d)  {
+        var month = d.getMonth() + 1;
+        var year  = d.getYear();
+        year += 1900;
+        var days;
+        if (month==1 || month==3 || month==5 || month==7 || month==8 || month==10 || month==12)
+                days=31;
+        else if (month==4 || month==6 || month==9 || month==11)
+                days=30;
+        else {
+                if (isLeapYear(year))
+                        days=29;
+                else 
+                        days=28;
+        }
+        return (days);
+}
+
+function isLeapYear (Year) {
+        if (((Year % 4)==0) && ((Year % 100)!=0) || ((Year % 400)==0))
+                return (true);
+        else 
+                return (false);
+}
+
+
+    function renderInfo() {
+      if (!wave.getState()) {
+        return;
+      }
+      
+      var state = wave.getState();
+      var participants = wave.getParticipants();
+      var numPeople = participants.length;
+      var now   = new Date();
+
+      e.write("month", getMonthName(now));
+      e.write("content","");
+      create_header(now);
+
+      if (participants) {
+        for (var i = 0; i < participants.length; ++i) {
+          var u = participants[i];
+          var person = wave.getState().get(u.getId())
+          if(!person){
+            person = {};
+            person.name = u.getDisplayName();
+            if (!person.name) {
+              person.name = u.getId();
+            }
+          }
+
+          create_row(now, person);
+        }
+      }
+    }
+
+    function init() {
+      if (wave && wave.isInWaveContainer()) {
+        wave.setStateCallback(renderInfo);
+        wave.setParticipantCallback(renderInfo);
+      }
+    }
+    gadgets.util.registerOnLoadHandler(init);
+
+  </script>
+
+  <table width="100%">
+    <tr><td align="center"><span id="month"></span></td></tr>
+  </table>
+
+  <table width="100%">
+    <tbody id="content"></tbody>
+  </table>
+
+
+  ]]> 
+  </Content>
+  </Module>

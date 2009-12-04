@@ -193,8 +193,8 @@ function isLeapYear (Year) {
     }
 
     function del(id){
-      e.write("month",id);
       var viewerId = wave.getViewer().getId();
+      e.write("month",id + " " + wave.getState().get(viewerId));
       var person;
       eval("person = " + wave.getState().get(viewerId));
       delete person.dates[id];

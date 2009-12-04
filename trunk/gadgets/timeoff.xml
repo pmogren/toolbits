@@ -148,6 +148,7 @@ function isLeapYear (Year) {
         person = {};
       if(!person.dates)
         person.dates = {};
+      person.dates[id] = {};
       person.dates[id].s = start;
       person.dates[id].e = end;
       delta[viewerId] = wave.util.printJson(person);

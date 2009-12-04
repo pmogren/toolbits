@@ -54,7 +54,11 @@ function create_row(now, person){
                 var dates = person.dates;
                 for(entry in dates){
                         var d = dates[entry];
-                        if(d.s <= col_date && d.e >= col_date)
+			var start = new Date();
+			var end = new Date();
+			start.setTime(d.s);
+			end.setTime(d.e);
+                        if(start <= col_date && end >= col_date)
                                 found = true;
                 }
                 if(found)
@@ -137,17 +141,13 @@ function isLeapYear (Year) {
     }
 
     function buttonClicked(){
-      e.write("month", "clicked");
       var id = getId();
       var viewerId = wave.getViewer().getId();
-      e.write("month", viewerId);
-      var start = new Date($("s").value);
-      var end = new Date($("e").value);
+      var start = new Date($("s").value).getTime();
+      var end = new Date($("e").value).getTime();
       var delta = {};
       var person;
-      //eval("person = " + wave.getState().get(viewerId));
-      person = wave.getState().get(viewerId);
-      e.write("month", person);
+      eval("person = " + wave.getState().get(viewerId));
       if(!person)
         person = {};
       if(!person.dates)
@@ -156,7 +156,6 @@ function isLeapYear (Year) {
       person.dates[id].s = start;
       person.dates[id].e = end;
       delta[viewerId] = wave.util.printJson(person);
-      e.write("month", delta[viewerId]);
       wave.getState().submitDelta(delta);
     }
 

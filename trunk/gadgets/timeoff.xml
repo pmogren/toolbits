@@ -132,7 +132,26 @@ function isLeapYear (Year) {
       }
     }
 
+    function getId(){
+      return wave.getTime();
+    }
+
     function buttonClicked(){
+      var id = getId();
+      var viewerId = wave.getViewer().getId();
+      var start = new Date($("s").value);
+      var end = new Date($("e").value);
+      var delta = {};
+      var person;
+      eval("person = " + wave.getState().get(viewerId));
+      if(!person}
+        person = {};
+      if(!person.dates}
+        person.dates = {};
+      person.dates[id].s = start;
+      person.dates[id].e = end;
+      delta[viewerId] = wave.util.printJson(person);
+      wave.getState().submitDelta(delta);
     }
 
     function init() {

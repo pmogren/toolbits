@@ -2,6 +2,7 @@
 <Module>
 <ModulePrefs title="Time Off" height="250">
   <Require feature="wave-preview" /> 
+  <Require feature="dynamic-height" /> 
   </ModulePrefs>
   <Content type="html">
  <![CDATA[ 

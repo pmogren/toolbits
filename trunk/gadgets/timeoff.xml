@@ -63,11 +63,11 @@ function create_header(now){
         var tr = e.create("tr");
         create_td(tr, "");
         for(var i = 0; i < numDays; i++ ) {
+                col_date.setDate( i + 1);
 		if(isWeekend(col_date) )
                 	create_td_class(tr, "we", i+1);
 		else
                 	create_td(tr, i+1);
-                col_date.setDate( col_date.getDate() + 1);
         }
         $("headder").appendChild(tr);
         

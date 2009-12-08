@@ -21,6 +21,7 @@
         }
         table.main thead tr td {
 		width="20px";
+                border-bottom: 1px solid #AAAAAA;
         }
 	td.we {
                 background: #CADEF0;
@@ -82,6 +83,7 @@ function create_row(now, person){
         var dates = person.dates;
 
         var tr = e.create("tr");
+	tr.setAttribute("title", person.name);
         create_td(tr, person.name);
 
         for(var i = 0; i < numDays; i++ ) {

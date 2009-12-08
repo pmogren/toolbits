@@ -1,4 +1,4 @@
-#summary Out Of Office Gadget for Google Wavea
+#summary Out Of Office Gadget for Google Wave
 
 = Introduction =
 

@@ -6,7 +6,28 @@
   </ModulePrefs>
   <Content type="html">
  <![CDATA[ 
-  
+
+ <style>
+        table.main {
+                border-collapse: collapse;
+                text-align: center;
+                font: 9px/10px Verdana, Arial, Helvetica, sans-serif;
+        }
+        table.main thead {
+                background: #AAAAAA;
+        }
+        table.main tbody tr {
+                border-bottom: 1px solid #AAAAAA;
+        }
+        table.main thead tr td {
+		width="20px";
+                border-bottom: 1px solid #AAAAAA;
+        }
+	td.we {
+                background: #CADEF0;
+	}
+</style>
+ 
   <script type="text/javascript">
 
     var curDate = new Date();
@@ -28,15 +49,27 @@ function create_td(tr, info){
         tr.appendChild(td);
 }
 
+function create_td_class(tr, class, info){
+        var td = e.create("td");
+        td.innerHTML = info;
+        tr.appendChild(td);
+	td.setAttribute('class', class);
+}
+
 function create_header(now){
         var numDays = getDays(now);
+        var col_date = new Date(now);
 
         var tr = e.create("tr");
         create_td(tr, "");
         for(var i = 0; i < numDays; i++ ) {
-                create_td(tr, i+1);
+                col_date.setDate( i + 1);
+		if(isWeekend(col_date) )
+                	create_td_class(tr, "we", i+1);
+		else
+                	create_td(tr, i+1);
         }
-        $("content").appendChild(tr);
+        $("headder").appendChild(tr);
         
 }
 
@@ -50,6 +83,7 @@ function create_row(now, person){
         var dates = person.dates;
 
         var tr = e.create("tr");
+	tr.setAttribute("title", person.name);
         create_td(tr, person.name);
 
         for(var i = 0; i < numDays; i++ ) {
@@ -66,12 +100,23 @@ function create_row(now, person){
                 }
                 if(found)
                         create_td(tr, "*");
-                else
+                else if( isWeekend(col_date))
+                	create_td_class(tr, "we", " ");
+		else
                         create_td(tr, " ");
                 col_date.setDate( col_date.getDate() + 1);
         }
         $("content").appendChild(tr);
         
+}
+
+
+function isWeekend(d){
+  var dow = d.getDay();
+  if(dow == 0 || dow == 6 )
+	return true;
+  else
+	return false;
 }
 
 function getMonthName(d)
@@ -121,6 +166,7 @@ function isLeapYear (Year) {
 
       e.write("month", getMonthName(now));
       e.write("year", now.getFullYear());
+      e.write("headder","");
       e.write("content","");
       create_header(now);
 
@@ -221,7 +267,8 @@ function isLeapYear (Year) {
     </tr>
   </table>
 
-  <table width="100%">
+  <table class="main" width="100%">
+    <thead id="headder"></thead>
     <tbody id="content"></tbody>
   </table>
 

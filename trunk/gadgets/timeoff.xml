@@ -25,6 +25,7 @@
         }
 	td.we {
                 background: #CADEF0;
+                border-bottom: 1px solid #CADEF0;
 	}
 </style>
  
@@ -99,7 +100,9 @@ function create_row(now, person){
                 }
                 if(found)
                         create_td(tr, "*");
-                else
+                else if( isWeekend(col_date))
+                	create_td_class(tr, "we", " ");
+		else
                         create_td(tr, " ");
                 col_date.setDate( col_date.getDate() + 1);
         }

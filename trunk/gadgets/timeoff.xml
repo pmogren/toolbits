@@ -17,8 +17,11 @@
                 background: #CADEF0;
         }
         table.main tbody tr {
-                border-bottom: 2px solid #AAAAAA;
+                border-bottom: 1px solid #AAAAAA;
         }
+	td.we {
+                background: #555555;
+	}
 </style>
  
   <script type="text/javascript">
@@ -42,13 +45,24 @@ function create_td(tr, info){
         tr.appendChild(td);
 }
 
+function create_td_class(tr, class, info){
+        var td = e.create("td");
+        td.innerHTML = info;
+        tr.appendChild(td);
+	td.class=class;
+}
+
 function create_header(now){
         var numDays = getDays(now);
+	var dayOfW = now.getDay();
 
         var tr = e.create("tr");
         create_td(tr, "");
         for(var i = 0; i < numDays; i++ ) {
-                create_td(tr, i+1);
+		if((i + dayOfW) % 7 == 0 )
+                	create_td_class(tr, "we", i+1);
+		else
+                	create_td(tr, i+1);
         }
         $("headder").appendChild(tr);
         

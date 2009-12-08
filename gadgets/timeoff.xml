@@ -19,8 +19,12 @@
         table.main tbody tr {
                 border-bottom: 1px solid #AAAAAA;
         }
+        table.main thead tr td {
+		width="20px";
+                border-bottom: 1px solid #AAAAAA;
+        }
 	td.we {
-                background: #555555;
+                background: #EEEEEE;
 	}
 </style>
  

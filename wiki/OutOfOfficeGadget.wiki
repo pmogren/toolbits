@@ -1,0 +1,9 @@
+#summary Out Of Office Gadget for Google Wavea
+
+= Introduction =
+
+Displays a simple flattened calendar to easily see who will be out of the office.
+
+
+= Install =
+In Google Wave click "Add Gadget by URL" and type:

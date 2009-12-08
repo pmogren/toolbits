@@ -5,6 +5,20 @@
   <Require feature="dynamic-height" /> 
   </ModulePrefs>
   <Content type="html">
+<style>
+        table.main {
+                border-collapse: collapse;
+                text-align: center;
+                font: 9px/10px Verdana, Arial, Helvetica, sans-serif;
+        }
+        table.main thead {
+                background: #CADEF0;
+        }
+        table.main tbody tr {
+                border-bottom: 2px solid #AAAAAA;
+        }
+</style>
+
  <![CDATA[ 
   
   <script type="text/javascript">
@@ -36,7 +50,7 @@ function create_header(now){
         for(var i = 0; i < numDays; i++ ) {
                 create_td(tr, i+1);
         }
-        $("content").appendChild(tr);
+        $("headder").appendChild(tr);
         
 }
 
@@ -121,6 +135,7 @@ function isLeapYear (Year) {
 
       e.write("month", getMonthName(now));
       e.write("year", now.getFullYear());
+      e.write("headder","");
       e.write("content","");
       create_header(now);
 
@@ -221,7 +236,8 @@ function isLeapYear (Year) {
     </tr>
   </table>
 
-  <table width="100%">
+  <table class="main" width="100%">
+    <thead id="headder"></thead>
     <tbody id="content"></tbody>
   </table>
 

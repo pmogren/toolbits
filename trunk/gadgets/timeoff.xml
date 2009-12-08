@@ -49,7 +49,7 @@ function create_td_class(tr, class, info){
         var td = e.create("td");
         td.innerHTML = info;
         tr.appendChild(td);
-	td.class=class;
+	td.setAttribute('class', class);
 }
 
 function create_header(now){

@@ -58,7 +58,7 @@ function create_td_class(tr, class, info){
 
 function create_header(now){
         var numDays = getDays(now);
-        var col_date = new Date(year, month, 1);
+        var col_date = new Date(now);
 
         var tr = e.create("tr");
         create_td(tr, "");

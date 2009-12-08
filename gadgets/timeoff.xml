@@ -21,7 +21,6 @@
         }
         table.main thead tr td {
 		width="20px";
-                border-bottom: 1px solid #AAAAAA;
         }
 	td.we {
                 background: #CADEF0;

@@ -98,7 +98,9 @@ function create_row(now, person){
                         if(start <= col_date && end >= col_date)
                                 found = true;
                 }
-                if(found)
+                if(found && isWeekend(col_date))
+                        create_td_class(tr, "we", "*");
+                else if(found)
                         create_td(tr, "*");
                 else if( isWeekend(col_date))
                 	create_td_class(tr, "we", " ");

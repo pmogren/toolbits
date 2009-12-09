@@ -206,6 +206,8 @@ function isLeapYear (Year) {
         }
       }
       gadgets.window.adjustHeight();
+
+      e.write("debug", wave.getState());
     }
 
     function getId(){
@@ -284,6 +286,8 @@ function isLeapYear (Year) {
     <tr><td>End:</td><td><input id="e"></input></td></tr>
     <tr><td></td><td><input type=button value="Add" id="add" onClick="buttonClicked()"></td></tr>
   </table>
+
+  <div id="debug" style="display: none;"></div>
 
 
   ]]> 

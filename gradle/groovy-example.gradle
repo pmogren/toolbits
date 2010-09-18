@@ -1,0 +1,47 @@
+
+['src/main/java','src/main/resources'].each {new File(it).mkdirs()}
+
+
+new File("build.gradle") << """
+apply plugin: 'groovy'
+
+task init_test(dependsOn: 'build') << {
+	javaexec{
+		classpath configurations.runtime.asPath + ':' + sourceSets.main.classesDir
+		setMain "SomethingB"
+	}
+}
+
+// For joint compilation have groovy compiler handle java
+sourceSets.main.java.srcDirs = []
+sourceSets.main.groovy.srcDir 'src/main/java'
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	groovy group: 'org.codehaus.groovy', name: 'groovy', version: '1.7.2'
+}
+
+"""
+
+new File("src/main/java/SomethingA.java") << """
+class SomethingA{
+	public void hello(){
+		System.out.println("Hello World");
+	}
+}
+"""
+
+new File("src/main/java/SomethingB.groovy") << """
+class SomethingB{
+	static void main(String[] args){
+		new SomethingA().hello()
+	}
+}
+"""
+
+println "Finsished"
+System.exit(0)
